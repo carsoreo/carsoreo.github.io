@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Carson Orejola</title>
 <meta name="description" content="Carson Orejola — Technical Support Engineer at Tanium. NC State Computer Science graduate.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230D2B33%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-family=%27Arial,sans-serif%27 font-weight=%27700%27 font-size=%2716%27 text-anchor=%27middle%27 fill=%27%2396D1AA%27%3ECO%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0D2B33">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +25,7 @@
     --surface: #FFFFFF;
     --text: var(--ink);
     --muted: #4A5F63;
-    --muted-dark: #9DB3B0;
+    --muted-dark: #B6DAD4;
     --line: #E3E6DE;
     --on-dark: #E8F0EC;
     --action: var(--blue);
@@ -42,7 +43,7 @@
       --panel: #12363F;
       --surface: #12363F;
       --text: #E8F0EC;
-      --muted: #9DB3B0;
+      --muted: #B6DAD4;
       --line: rgba(255, 255, 255, .08);
       --action: var(--sage);
       --action-hover: #B4E0C2;
@@ -82,7 +83,7 @@
   .mark span { color: var(--green); }
   nav ul { display: flex; gap: 28px; list-style: none; margin: 0 0 0 auto; padding: 0; font-size: 15px; font-weight: 500; }
   nav ul a { position: relative; color: var(--muted); text-decoration: none; }
-  nav ul a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-out); }
+  nav ul a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease-out); }
   nav ul a:hover, nav ul a.active { color: var(--text); }
   nav ul a:hover::after, nav ul a.active::after { transform: scaleX(1); }
 
@@ -95,16 +96,16 @@
     background: var(--action); color: var(--action-text);
     transition: background-color .25s var(--ease-std), border-color .25s var(--ease-std), transform .25s var(--ease-std), box-shadow .25s var(--ease-std);
   }
-  .btn:hover { background: var(--action-hover); transform: translateY(-2px); box-shadow: 0 10px 28px -12px var(--action); }
+  .btn:active { transform: scale(.97); transition-duration: .1s; }
   .btn.outline { background: transparent; color: var(--text); border-color: var(--line); }
-  .btn.outline:hover { border-color: var(--green); box-shadow: none; }
+
   .btn.small { padding: 10px 18px; font-size: 14px; }
   .btn .arrow { transition: transform .25s var(--ease-std); }
-  .btn:hover .arrow { transform: translateX(3px); }
+
   .dark .btn:not(.outline) { background: var(--sage); color: var(--ink); }
-  .dark .btn:not(.outline):hover { background: #B4E0C2; box-shadow: 0 10px 28px -12px var(--sage); }
+
   .dark .btn.outline { color: var(--on-dark); border-color: rgba(255, 255, 255, .16); }
-  .dark .btn.outline:hover { border-color: var(--sage); }
+
 
   /* Dark blocks (hero, proof panel) */
   .dark { background: var(--ink); color: var(--on-dark); --eyebrow: var(--sage); --muted: var(--muted-dark); }
@@ -118,8 +119,9 @@
   .hero .wrap { position: relative; }
   .hero h1 {
     font-size: clamp(48px, 9vw, 80px); font-weight: 700; line-height: 1; letter-spacing: -.03em; margin: 0 0 28px;
-    background: linear-gradient(90deg, var(--sage), var(--lemon)); -webkit-background-clip: text; background-clip: text; color: transparent;
+    color: var(--on-dark);
   }
+  .role { font: 500 clamp(18px, 2.2vw, 22px)/1.4 "Space Grotesk", sans-serif; color: var(--sage); margin: -12px 0 20px; }
   .lede { font-size: clamp(18px, 2vw, 20px); line-height: 1.6; color: var(--muted-dark); max-width: 640px; margin: 0 0 40px; }
 
   /* Stats strip */
@@ -144,15 +146,15 @@
     position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 36px;
     transition: transform .25s var(--ease-std), border-color .25s var(--ease-std), box-shadow .25s var(--ease-std);
   }
-  .card:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: 0 18px 40px -24px rgba(13, 43, 51, .45); }
+
   .card p { max-width: 640px; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 20px 0 0; padding: 0; }
   .chips li { background: var(--chip-bg); color: var(--chip-text); font-size: 13px; font-weight: 500; padding: 5px 13px; border-radius: 999px; transition: transform .25s var(--ease-std); }
-  .chips li:hover { transform: translateY(-1px); }
+
   #projects .card + .card { margin-top: 24px; }
   .card-link { display: inline-flex; gap: 6px; margin-top: 24px; font-weight: 600; font-size: 15px; text-decoration: none; }
   .card-link .arrow { transition: transform .25s var(--ease-std); }
-  .card-link:hover .arrow { transform: translateX(3px); }
+
   .repos { list-style: none; margin: 20px 0 0; padding: 0; }
   .repos li { padding: 14px 0; border-top: 1px solid var(--line); }
   .repos li > a { font: 600 16px "Space Grotesk", sans-serif; text-decoration: none; }
@@ -169,7 +171,7 @@
     box-shadow: 0 6px 16px -8px rgba(13, 43, 51, .5);
     transition: transform .4s var(--ease-out);
   }
-  .card:hover .sticker { animation: wiggle .6s var(--ease-out); }
+
   @keyframes wiggle { 25% { transform: rotate(-5deg) scale(1.08); } 60% { transform: rotate(8deg) scale(1.04); } }
 
   /* Certifications proof panel */
@@ -180,7 +182,7 @@
     background-image: radial-gradient(120% 80% at 50% 0%, rgba(150, 209, 170, .10), transparent);
     transition: transform .25s var(--ease-std), border-color .25s var(--ease-std);
   }
-  .cert:hover { transform: translateY(-4px); border-color: var(--sage); }
+
   .cert h3 { font-size: 17px; color: var(--on-dark); }
   .cert .meta { margin: 8px 0 0; font-size: 14px; }
   .cert .meta b { color: var(--sage); font-weight: 600; }
@@ -189,7 +191,7 @@
   .marquee { overflow: hidden; padding: 8px 0 64px; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
   .marquee .track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
   .marquee:hover .track { animation-play-state: paused; }
-  .marquee span { font: 600 clamp(28px, 4vw, 40px) "Space Grotesk", sans-serif; letter-spacing: -.02em; color: var(--muted); opacity: .55; padding: 0 28px; white-space: nowrap; }
+  .marquee span { font: 600 clamp(28px, 4vw, 40px) "Space Grotesk", sans-serif; letter-spacing: -.02em; color: var(--muted); opacity: .85; padding: 0 28px; white-space: nowrap; }
   .marquee span::after { content: "·"; padding-left: 56px; color: var(--green); }
   @keyframes marquee { to { transform: translateX(-50%); } }
 
@@ -226,9 +228,25 @@
   /* Hover transitions must not wait for the reveal stagger */
   .js .reveal.in.card, .js .reveal.in.cert { transition-delay: 0s; }
 
+  /* Hover effects only for real pointers; touch taps would leave them stuck on */
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover { transform: translateY(-2px); }
+    .btn:not(.outline):hover { background: var(--action-hover); }
+    .btn.outline:hover { border-color: var(--green); }
+    .btn:hover .arrow, .card-link:hover .arrow { transform: translateX(3px); }
+    .dark .btn:not(.outline):hover { background: #B4E0C2; }
+    .dark .btn.outline:hover { border-color: var(--sage); }
+    .card:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: 0 18px 40px -24px rgba(13, 43, 51, .45); }
+    .card:hover .sticker { animation: wiggle .6s var(--ease-out); }
+    .cert:hover { transform: translateY(-4px); border-color: var(--sage); }
+  }
+
+  /* Reduced motion: fewer, gentler animations, not none. Fades stay; movement goes. */
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    .js .reveal { opacity: 1; transform: none; }
+    *, *::before, *::after { animation: none !important; }
+    .js .reveal, .js .reveal.scale { transform: none; transition: opacity .4s ease; }
+    .glow, .marquee .track { animation: none !important; }
+    .card, .cert, .btn, .btn .arrow, .card-link .arrow { transform: none !important; }
   }
 </style>
 <script>document.documentElement.classList.add('js');</script>
@@ -254,8 +272,8 @@
     <div class="glow g2"></div>
     <div class="wrap">
       <div class="hero-copy">
-        <p class="eyebrow">Technical Support Engineer · Durham, NC</p>
         <h1>Carson Orejola</h1>
+        <p class="role">Technical Support Engineer · Durham, NC</p>
         <p class="lede">A young professional in tech who loves solving hard problems for customers. Computer Science graduate from NC State, now supporting some of Tanium's largest customers, and looking for new, challenging roles in tech.</p>
         <div class="actions">
           <a class="btn" href="mailto:carsoreo@gmail.com">Get in touch <span class="arrow">→</span></a>
@@ -273,8 +291,7 @@
 
   <section id="experience">
     <div class="wrap">
-      <p class="eyebrow">Experience</p>
-      <h2>Where I've worked</h2>
+      <h2>Experience</h2>
       <div class="timeline">
         <div class="job">
           <div class="when">Jul 2024 – Present</div>
@@ -318,12 +335,10 @@
 
   <section id="projects">
     <div class="wrap">
-      <p class="eyebrow">Projects</p>
       <h2>Things I've built</h2>
       <div class="card">
-        <p class="eyebrow">NC State Senior Design · Sponsored by SAS</p>
         <h3>Data Steward Web App</h3>
-        <p class="meta">5-person team</p>
+        <p class="meta">NC State Senior Design · Sponsored by SAS · 5-person team</p>
         <p>A full-stack web application built for SAS's Data Management Unit, helping data stewards manage their data more efficiently, from first idea to finished product.</p>
         <ul class="chips">
           <li>React</li><li>Python</li><li>MySQL</li><li>Docker</li>
@@ -331,9 +346,8 @@
       </div>
       <div class="card">
         <span class="sticker">(this website!)</span>
-        <p class="eyebrow">Personal Project</p>
         <h3>carsoreo.github.io</h3>
-        <p class="meta">Designed &amp; built from scratch</p>
+        <p class="meta">Personal project · Designed &amp; built from scratch</p>
         <p>The page you're looking at. A hand-built resume site with its own design system, scroll animations and light and dark modes, hosted on GitHub Pages.</p>
         <ul class="chips">
           <li>HTML</li><li>CSS</li><li>JavaScript</li><li>GitHub Pages</li>
@@ -341,9 +355,8 @@
         <a class="card-link" href="https://github.com/carsoreo/carsoreo.github.io" target="_blank" rel="noopener">View the code <span class="arrow">→</span></a>
       </div>
       <div class="card">
-        <p class="eyebrow">Personal Project</p>
         <h3>Photography Portfolio</h3>
-        <p class="meta">carsoreo.github.io/photography · @car_sore</p>
+        <p class="meta">Personal project · carsoreo.github.io/photography · @car_sore</p>
         <p>A dark, gallery-style site for my wildlife, landscape and street photography. It has curated collections, a full-screen photo viewer with camera settings, and images that are automatically resized and stripped of location data.</p>
         <ul class="chips">
           <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>Darktable</li>
@@ -351,9 +364,8 @@
         <a class="card-link" href="https://carsoreo.github.io/photography/" target="_blank" rel="noopener">View the gallery <span class="arrow">→</span></a>
       </div>
       <div class="card">
-        <p class="eyebrow">On GitHub · <span id="gh-updated">live</span></p>
         <h3>github.com/carsoreo</h3>
-        <p class="meta">Everything I'm building, pulled live from GitHub</p>
+        <p class="meta">Everything I'm building, pulled live from GitHub · <span id="gh-updated">live</span></p>
         <!-- Filled in from the GitHub API on page load; this static list is the fallback. -->
         <ul class="repos" id="gh-repos">
           <li><a href="https://github.com/carsoreo/ff-discord-bot" target="_blank" rel="noopener">ff-discord-bot</a><span class="wip">In progress</span><p>Discord bot for my fantasy football league</p></li>
@@ -368,7 +380,6 @@
   <section id="certifications">
     <div class="wrap">
       <div class="proof dark">
-        <p class="eyebrow">Verified</p>
         <h2>Certifications</h2>
         <div class="certs">
           <div class="cert"><h3>Tanium Certified Specialist – Cloud Deployment</h3><p class="meta"><b>Tanium</b> · 2025</p></div>
@@ -392,8 +403,7 @@
 
   <section id="education" style="padding-top: 32px">
     <div class="wrap">
-      <p class="eyebrow">Education &amp; Skills</p>
-      <h2>Foundations</h2>
+      <h2>Education &amp; Skills</h2>
       <div class="job plain">
         <div class="when">2020 – 2024</div>
         <div>
@@ -410,7 +420,6 @@
   <section id="contact">
     <div class="wrap">
       <div class="closing">
-        <p class="eyebrow">Contact</p>
         <h2>Let's build something reliable.</h2>
         <p>I'm open to new, challenging roles in tech. Reach me by email or phone.</p>
         <div class="actions">
