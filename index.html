@@ -131,6 +131,17 @@
   .stat b { display: block; font-size: clamp(40px, 5vw, 56px); font-weight: 700; line-height: 1; letter-spacing: -.03em; color: var(--lemon); }
   .stat span { display: block; margin-top: 10px; font-size: 14px; color: var(--muted-dark); }
 
+  /* About */
+  .about { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: start; }
+  .about-intro p { color: var(--muted); max-width: 46ch; margin: 0 0 16px; }
+  .about-intro .about-lede { color: var(--text); font-size: clamp(19px, 2vw, 22px); line-height: 1.5; }
+  .interests { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+  .interests li { padding: 18px 0; border-top: 1px solid var(--line); }
+  .interests h3 { font-size: 17px; margin-bottom: 4px; }
+  .interests p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.55; }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; gap: 32px; } }
+  @media (max-width: 480px) { .interests { grid-template-columns: 1fr; } }
+
   /* Experience timeline */
   .timeline { position: relative; padding-left: 32px; }
   .timeline::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
@@ -293,6 +304,7 @@
   <div class="wrap">
     <a class="mark" href="#">Carson Orejola<span>.</span></a>
     <ul>
+      <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#certifications">Certifications</a></li>
@@ -324,6 +336,26 @@
       </div>
     </div>
   </header>
+
+  <section id="about">
+    <div class="wrap about">
+      <div class="about-intro">
+        <h2>About me</h2>
+        <p class="about-lede">I grew up in Durham, North Carolina. I&rsquo;m proud of my Filipino heritage, and I love technology, good coffee and the people around both.</p>
+        <p>Most days you&rsquo;ll find me solving problems for customers at Tanium. The rest of the time I&rsquo;m at the gym, behind a camera, or chasing down the next great cafe in the Triangle. I like learning new things for the fun of it, and I bring that same curiosity to work.</p>
+      </div>
+      <ul class="interests">
+        <li><h3>Coffee</h3><p>I&rsquo;ve reviewed nearly every cafe in the Triangle, and I develop my own drinks in my home cafe.</p></li>
+        <li><h3>Photography</h3><p>Wildlife, landscapes and street photos, especially birds. <a href="https://carsoreo.github.io/photography/">See the gallery</a> or follow <a href="https://www.instagram.com/car_sore/" target="_blank" rel="noopener">@car_sore</a>.</p></li>
+        <li><h3>Football</h3><p>A big fan of the game, and of the analytical side of fantasy football. I&rsquo;m <a href="https://github.com/carsoreo/ff-discord-bot" target="_blank" rel="noopener">building a Discord bot</a> for my league.</p></li>
+        <li><h3>Staying active</h3><p>The gym is part of my routine, and lately I&rsquo;ve been getting into running.</p></li>
+        <li><h3>Music</h3><p>A lifelong passion. I&rsquo;m currently teaching myself guitar.</p></li>
+        <li><h3>Cooking</h3><p>I love to cook, and I&rsquo;m always looking for the next recipe to try.</p></li>
+        <li><h3>Tech &amp; games</h3><p>Technology is my job and my hobby, and I&rsquo;ve always loved video games.</p></li>
+        <li><h3>Kikko &amp; Adobo</h3><p>My two cats, and the toughest critics of my home cafe.</p></li>
+      </ul>
+    </div>
+  </section>
 
   <section id="experience">
     <div class="wrap">
@@ -501,12 +533,12 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Scroll reveals; cards and cert tiles also scale in, grid siblings stagger.
-  const items = document.querySelectorAll('section .eyebrow:first-child, section h2, .job, .card, .cert, .stat, .closing');
+  const items = document.querySelectorAll('section .eyebrow:first-child, section h2, .job, .card, .cert, .stat, .closing, .about-intro p, .interests li');
   items.forEach(el => {
     if (el.closest('.card, .closing') && el !== el.closest('.card, .closing')) return;
     el.classList.add('reveal');
     if (el.matches('.card, .cert')) el.classList.add('scale');
-    const sibs = [...el.parentElement.children].filter(c => c.matches('.job, .cert, .stat, .card'));
+    const sibs = [...el.parentElement.children].filter(c => c.matches('.job, .cert, .stat, .card, .interests li'));
     if (sibs.length > 1) el.style.setProperty('--d', sibs.indexOf(el) * 0.08 + 's');
   });
   const io = new IntersectionObserver(entries => entries.forEach(e => {
