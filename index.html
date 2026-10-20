@@ -153,6 +153,12 @@
   .card-link { display: inline-flex; gap: 6px; margin-top: 24px; font-weight: 600; font-size: 15px; text-decoration: none; }
   .card-link .arrow { transition: transform .25s var(--ease-std); }
   .card-link:hover .arrow { transform: translateX(3px); }
+  .repos { list-style: none; margin: 20px 0 0; padding: 0; }
+  .repos li { padding: 14px 0; border-top: 1px solid var(--line); }
+  .repos li > a { font: 600 16px "Space Grotesk", sans-serif; text-decoration: none; }
+  .repos p { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+  .repos .info { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+  .repos .wip { margin-left: 10px; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--lemon); color: var(--ink); vertical-align: 2px; }
   /* Quirky lemon sticker slapped on the corner of the website card */
   .sticker {
     position: absolute; top: -14px; right: 28px;
@@ -344,6 +350,18 @@
         </ul>
         <a class="card-link" href="https://carsoreo.github.io/photography/" target="_blank" rel="noopener">View the gallery <span class="arrow">→</span></a>
       </div>
+      <div class="card">
+        <p class="eyebrow">On GitHub · <span id="gh-updated">live</span></p>
+        <h3>github.com/carsoreo</h3>
+        <p class="meta">Everything I'm building, pulled live from GitHub</p>
+        <!-- Filled in from the GitHub API on page load; this static list is the fallback. -->
+        <ul class="repos" id="gh-repos">
+          <li><a href="https://github.com/carsoreo/ff-discord-bot" target="_blank" rel="noopener">ff-discord-bot</a><span class="wip">In progress</span><p>Discord bot for my fantasy football league</p></li>
+          <li><a href="https://github.com/carsoreo/photography" target="_blank" rel="noopener">photography</a><p>Wildlife, landscape and street photography by Carson Orejola (@car_sore)</p></li>
+          <li><a href="https://github.com/carsoreo/carsoreo.github.io" target="_blank" rel="noopener">carsoreo.github.io</a><p>My personal website</p></li>
+        </ul>
+        <a class="card-link" href="https://github.com/carsoreo" target="_blank" rel="noopener">View my GitHub <span class="arrow">→</span></a>
+      </div>
     </div>
   </section>
 
@@ -430,6 +448,37 @@
     if (n) countUp(n);
   }), { rootMargin: '0px 0px -10% 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Live GitHub repos: newest activity first, with each repo's latest commit.
+  // shortcut: unauthenticated API allows 60 requests/hour per visitor; on failure the static list stays.
+  const IN_PROGRESS = ['ff-discord-bot'];
+  const ago = d => {
+    const s = (Date.now() - new Date(d)) / 1000;
+    for (const [n, u] of [[31536000, 'year'], [2592000, 'month'], [86400, 'day'], [3600, 'hour'], [60, 'minute']])
+      if (s >= n) { const v = Math.floor(s / n); return `${v} ${u}${v > 1 ? 's' : ''} ago`; }
+    return 'just now';
+  };
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  (async () => {
+    try {
+      const res = await fetch('https://api.github.com/users/carsoreo/repos?sort=pushed&per_page=6');
+      if (!res.ok) return;
+      const repos = (await res.json()).filter(r => !r.fork);
+      await Promise.all(repos.map(async r => {
+        r.latest = await fetch(`https://api.github.com/repos/carsoreo/${r.name}/commits?per_page=1`).then(c => c.ok ? c.json() : []).catch(() => []);
+      }));
+      repos.sort((a, b) => IN_PROGRESS.includes(b.name) - IN_PROGRESS.includes(a.name));
+      document.getElementById('gh-repos').innerHTML = repos.map(r => {
+        const c = r.latest[0];
+        const msg = c ? c.commit.message.split('\n')[0] : '';
+        return `<li><a href="${esc(r.html_url)}" target="_blank" rel="noopener">${esc(r.name)}</a>`
+          + (IN_PROGRESS.includes(r.name) ? '<span class="wip">In progress</span>' : '')
+          + (r.description ? `<p>${esc(r.description)}</p>` : '')
+          + `<span class="info">${[r.language, `updated ${ago(r.pushed_at)}`, msg && `“${esc(msg)}”`].filter(Boolean).join(' · ')}</span></li>`;
+      }).join('');
+      document.getElementById('gh-updated').textContent = `${repos.length} repos`;
+    } catch { /* keep the static fallback */ }
+  })();
 
   // Stat numbers count up from 0 once revealed.
   function countUp(el) {
