@@ -9,8 +9,10 @@
 <meta name="theme-color" content="#0D2B33">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  h1, h2, h3 { font-optical-sizing: auto; text-wrap: balance; }
+  p { text-wrap: pretty; }
   /* Tokens: see docs/design-system.md */
   :root {
     --blue: #007190;
@@ -59,15 +61,15 @@
     margin: 0;
     background: var(--paper);
     color: var(--text);
-    font: 400 17px/1.65 Inter, system-ui, sans-serif;
+    font: 400 17px/1.65 "Hanken Grotesk", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
   a { color: var(--action); text-underline-offset: 3px; }
-  h1, h2, h3, .stat b, .mark { font-family: "Space Grotesk", Inter, sans-serif; }
+  h1, h2, h3, .stat b, .mark { font-family: "Bricolage Grotesque", "Hanken Grotesk", sans-serif; }
   h2 { font-size: clamp(32px, 4.5vw, 44px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; margin: 0 0 40px; }
   h3 { font-size: 20px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; margin: 0; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-  .eyebrow { font: 600 13px/1.4 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--eyebrow); margin: 0 0 14px; }
+  .eyebrow { font: 600 13px/1.4 "Hanken Grotesk", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--eyebrow); margin: 0 0 14px; }
   .meta { color: var(--muted); font-size: 15px; font-weight: 500; margin: 4px 0 14px; }
   section { padding: 96px 0; scroll-margin-top: 64px; }
 
@@ -92,7 +94,7 @@
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 14px 24px; border-radius: 999px; border: 1px solid transparent;
-    font: 600 15px/1 Inter, sans-serif; text-decoration: none;
+    font: 600 15px/1 "Hanken Grotesk", sans-serif; text-decoration: none;
     background: var(--action); color: var(--action-text);
     transition: background-color .25s var(--ease-std), border-color .25s var(--ease-std), transform .25s var(--ease-std), box-shadow .25s var(--ease-std);
   }
@@ -121,7 +123,7 @@
     font-size: clamp(48px, 9vw, 80px); font-weight: 700; line-height: 1; letter-spacing: -.03em; margin: 0 0 28px;
     color: var(--on-dark);
   }
-  .role { font: 500 clamp(18px, 2.2vw, 22px)/1.4 "Space Grotesk", sans-serif; color: var(--sage); margin: -12px 0 20px; }
+  .role { font: 500 clamp(18px, 2.2vw, 22px)/1.4 "Bricolage Grotesque", sans-serif; color: var(--sage); margin: -12px 0 20px; }
   .lede { font-size: clamp(18px, 2vw, 20px); line-height: 1.6; color: var(--muted-dark); max-width: 640px; margin: 0 0 40px; }
 
   /* Stats strip */
@@ -157,7 +159,7 @@
 
   .repos { list-style: none; margin: 20px 0 0; padding: 0; }
   .repos li { padding: 14px 0; border-top: 1px solid var(--line); }
-  .repos li > a { font: 600 16px "Space Grotesk", sans-serif; text-decoration: none; }
+  .repos li > a { font: 600 16px "Bricolage Grotesque", sans-serif; text-decoration: none; }
   .repos p { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
   .repos .info { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
   .repos .wip { margin-left: 10px; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--lemon); color: var(--ink); vertical-align: 2px; }
@@ -165,7 +167,7 @@
   .sticker {
     position: absolute; top: -14px; right: 28px;
     background: var(--lemon); color: var(--ink);
-    font: 700 15px "Space Grotesk", sans-serif; letter-spacing: -.01em;
+    font: 700 15px "Bricolage Grotesque", sans-serif; letter-spacing: -.01em;
     padding: 8px 16px; border-radius: 999px;
     transform: rotate(4deg);
     box-shadow: 0 6px 16px -8px rgba(13, 43, 51, .5);
@@ -191,7 +193,7 @@
   .marquee { overflow: hidden; padding: 8px 0 64px; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
   .marquee .track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
   .marquee:hover .track { animation-play-state: paused; }
-  .marquee span { font: 600 clamp(28px, 4vw, 40px) "Space Grotesk", sans-serif; letter-spacing: -.02em; color: var(--muted); opacity: .85; padding: 0 28px; white-space: nowrap; }
+  .marquee span { font: 600 clamp(28px, 4vw, 40px) "Bricolage Grotesque", sans-serif; letter-spacing: -.02em; color: var(--muted); opacity: .85; padding: 0 28px; white-space: nowrap; }
   .marquee span::after { content: "·"; padding-left: 56px; color: var(--green); }
   @keyframes marquee { to { transform: translateX(-50%); } }
 

@@ -59,17 +59,17 @@ Supporting tints, derived from the above:
 
 | Use | Font | Weight | Size (desktop → mobile) | Line height | Tracking |
 |-----|------|--------|-------------------------|-------------|----------|
-| Hero name (H1) | **Space Grotesk** | 700 | 80px → 48px (`clamp(48px, 9vw, 80px)`) | 1.0 | −0.03em |
-| Section title (H2) | Space Grotesk | 700 | 44px → 32px | 1.1 | −0.02em |
-| Card / role title (H3) | Space Grotesk | 600 | 20px | 1.3 | −0.01em |
-| Stat number | Space Grotesk | 700 | 56px → 40px | 1.0 | −0.03em |
-| Eyebrow | Inter | 600 | 13px, UPPERCASE | 1.4 | +0.12em |
-| Body | **Inter** | 400 | 17px | 1.65 | 0 |
-| Lede / intro | Inter | 400 | 20px → 18px | 1.6 | 0 |
-| Meta (dates, company) | Inter | 500 | 15px | 1.5 | 0 |
-| Button | Inter | 600 | 15px | 1 | 0 |
+| Hero name (H1) | **Bricolage Grotesque** | 700 | 80px → 48px (`clamp(48px, 9vw, 80px)`) | 1.0 | −0.03em |
+| Section title (H2) | Bricolage Grotesque | 700 | 44px → 32px | 1.1 | −0.02em |
+| Card / role title (H3) | Bricolage Grotesque | 600 | 20px | 1.3 | −0.01em |
+| Stat number | Bricolage Grotesque | 700 | 56px → 40px | 1.0 | −0.03em |
+| Eyebrow | Hanken Grotesk | 600 | 13px, UPPERCASE | 1.4 | +0.12em |
+| Body | **Hanken Grotesk** | 400 | 17px | 1.65 | 0 |
+| Lede / intro | Hanken Grotesk | 400 | 20px → 18px | 1.6 | 0 |
+| Meta (dates, company) | Hanken Grotesk | 500 | 15px | 1.5 | 0 |
+| Button | Hanken Grotesk | 600 | 15px | 1 | 0 |
 
-- Load from Google Fonts: `Space Grotesk:wght@500;600;700` and `Inter:wght@400;500;600`.
+- Load from Google Fonts: `Bricolage Grotesque:opsz,wght@12..96,500;600;700` (optical sizing on) and `Hanken Grotesk:wght@400;500;600`. Space Grotesk + Inter were replaced on 2026-10-20 after Impeccable flagged them as overused defaults; Bricolage gives the headings organic, characterful curves that match the natural palette..
 - Headings follow Tanium's lead: heavy and tightly tracked. Body copy follows Cisco's: quiet and roomy.
 - Body text is never pure black. Use Ink or Muted.
 
@@ -96,7 +96,7 @@ Supporting tints, derived from the above:
 | 4 | **Experience** | Paper | Tanium feature rows | Each role has a date column, title, company and bullets. A small Benzol Green dot marks a timeline line. |
 | 5 | **Project** | Paper | Tanium split block | One wide card for the SAS app, with tech chips in Sage. |
 | 6 | **Certifications** | **Ink proof panel**, 24px radius, card light | Tanium "Named a Leader" card | Eyebrow "VERIFIED", the H2, then a 2×2 grid of cert tiles. |
-| 7 | **Worked with** | Paper | Tanium logo marquee | A slow marquee of names in muted Space Grotesk: Tanium · Cisco · NC State. |
+| 7 | **Worked with** | Paper | Tanium logo marquee | A slow marquee of names in muted Bricolage Grotesque: Tanium · Cisco · NC State. |
 | 8 | **Education & skills** | Paper | (none) | Degree, plus a skill chip cloud. |
 | 9 | **Contact / closing CTA** | Paper-tinted panel (`#F3F0E4`), 24px radius | Tanium closing band | A big centered H2 "Let's build something reliable.", then email and LinkedIn pills. |
 | 10 | **Footer** | Paper | (none) | © year · Built by Carson. |
@@ -119,7 +119,7 @@ Skipped on purpose: mega-menus, tabs, carousels and cookie banners. They're too 
 
 **Cards:** 16px radius, 1px border, Paper or white surface. Hover lifts 4px, the border turns Benzol Green and the shadow appears.
 
-**Stat:** a Space Grotesk 700 number above an Inter 14px muted label.
+**Stat:** a Bricolage Grotesque 700 number above an Inter 14px muted label.
 
 ---
 
