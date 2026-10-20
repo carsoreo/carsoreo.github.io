@@ -149,6 +149,22 @@
   .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 20px 0 0; padding: 0; }
   .chips li { background: var(--chip-bg); color: var(--chip-text); font-size: 13px; font-weight: 500; padding: 5px 13px; border-radius: 999px; transition: transform .25s var(--ease-std); }
   .chips li:hover { transform: translateY(-1px); }
+  #projects .card + .card { margin-top: 24px; }
+  .card-link { display: inline-flex; gap: 6px; margin-top: 24px; font-weight: 600; font-size: 15px; text-decoration: none; }
+  .card-link .arrow { transition: transform .25s var(--ease-std); }
+  .card-link:hover .arrow { transform: translateX(3px); }
+  /* Quirky lemon sticker slapped on the corner of the website card */
+  .sticker {
+    position: absolute; top: -14px; right: 28px;
+    background: var(--lemon); color: var(--ink);
+    font: 700 15px "Space Grotesk", sans-serif; letter-spacing: -.01em;
+    padding: 8px 16px; border-radius: 999px;
+    transform: rotate(4deg);
+    box-shadow: 0 6px 16px -8px rgba(13, 43, 51, .5);
+    transition: transform .4s var(--ease-out);
+  }
+  .card:hover .sticker { animation: wiggle .6s var(--ease-out); }
+  @keyframes wiggle { 25% { transform: rotate(-5deg) scale(1.08); } 60% { transform: rotate(8deg) scale(1.04); } }
 
   /* Certifications proof panel */
   .proof { border-radius: 24px; padding: 64px; background-image: radial-gradient(120% 80% at 50% 0%, rgba(150, 209, 170, .10), transparent); background-color: var(--ink); }
@@ -307,6 +323,17 @@
           <li>React</li><li>Python</li><li>MySQL</li><li>Docker</li>
         </ul>
       </div>
+      <div class="card">
+        <span class="sticker">(this website!)</span>
+        <p class="eyebrow">Personal Project</p>
+        <h3>carsoreo.github.io</h3>
+        <p class="meta">Designed &amp; built from scratch</p>
+        <p>The page you're looking at. A hand-built resume site with its own design system, scroll animations and light and dark modes, hosted on GitHub Pages.</p>
+        <ul class="chips">
+          <li>HTML</li><li>CSS</li><li>JavaScript</li><li>GitHub Pages</li>
+        </ul>
+        <a class="card-link" href="https://github.com/carsoreo/carsoreo.github.io" target="_blank" rel="noopener">View the code <span class="arrow">→</span></a>
+      </div>
     </div>
   </section>
 
@@ -381,7 +408,7 @@
     if (el.closest('.card, .closing') && el !== el.closest('.card, .closing')) return;
     el.classList.add('reveal');
     if (el.matches('.card, .cert')) el.classList.add('scale');
-    const sibs = [...el.parentElement.children].filter(c => c.matches('.job, .cert, .stat'));
+    const sibs = [...el.parentElement.children].filter(c => c.matches('.job, .cert, .stat, .card'));
     if (sibs.length > 1) el.style.setProperty('--d', sibs.indexOf(el) * 0.08 + 's');
   });
   const io = new IntersectionObserver(entries => entries.forEach(e => {
