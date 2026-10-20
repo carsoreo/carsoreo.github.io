@@ -157,6 +157,14 @@
   .card-link { display: inline-flex; gap: 6px; margin-top: 24px; font-weight: 600; font-size: 15px; text-decoration: none; }
   .card-link .arrow { transition: transform .25s var(--ease-std); }
 
+  /* Expanding photo panel: grid rows animate 0fr to 1fr, so no fixed height is needed. */
+  button.card-link { background: none; border: 0; padding: 0; cursor: pointer; color: var(--action); font-family: inherit; }
+  .reveal-toggle .arrow { display: inline-block; transition: transform .25s var(--ease-out); }
+  .reveal-toggle[aria-expanded="true"] .arrow { transform: rotate(90deg); }
+  .collapse { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .45s var(--ease-out), opacity .3s ease; }
+  .collapse.open { grid-template-rows: 1fr; opacity: 1; }
+  .collapse-inner { overflow: hidden; min-height: 0; }
+  .collapse:not(.open) .collapse-inner { visibility: hidden; transition: visibility 0s .45s; }
   .shots { display: grid; grid-template-columns: 1.33fr 1fr; gap: 12px; margin-top: 24px; }
   .shots a { display: block; overflow: hidden; border-radius: 12px; border: 1px solid var(--line); cursor: zoom-in; }
   .shots img { display: block; width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .4s var(--ease-out); }
@@ -353,11 +361,14 @@
           <li>React</li><li>Python</li><li>Flask</li><li>MySQL</li><li>Docker</li><li>K-means</li>
         </ul>
         <!-- Code is sponsor-owned, so the card shows the team's public showcase photos instead. -->
+        <button class="card-link reveal-toggle" type="button" aria-expanded="false" aria-controls="datamatch-shots">View the poster &amp; team photo <span class="arrow">→</span></button>
+        <div class="collapse" id="datamatch-shots"><div class="collapse-inner">
         <div class="shots">
           <a href="images/datamatch-poster.jpg" target="_blank" rel="noopener"><img src="images/datamatch-poster.jpg" width="800" height="601" loading="lazy" alt="The DataMatch project poster: problem overview, high-level design, K-means clustering charts, database diagram and test results"></a>
           <a href="images/datamatch-team.jpg" target="_blank" rel="noopener"><img src="images/datamatch-team.jpg" width="1004" height="1024" loading="lazy" alt="The DataMatch team and SAS mentors standing beside the poster at NC State's senior design showcase"></a>
         </div>
         <p class="caption">Our poster and team at NC State's senior design showcase. <a href="https://www.linkedin.com/posts/carson-orejola_pleasure-working-with-everyone-activity-7194406125784420352-pScL" target="_blank" rel="noopener">See the LinkedIn post</a></p>
+        </div></div>
       </div>
       <div class="card">
         <span class="sticker">(this website!)</span>
@@ -503,6 +514,14 @@
       document.getElementById('gh-updated').textContent = `${repos.length} repos`;
     } catch { /* keep the static fallback */ }
   })();
+
+  // Photo panels open and close from their toggle link.
+  document.querySelectorAll('.reveal-toggle').forEach(btn => btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', open);
+    document.getElementById(btn.getAttribute('aria-controls')).classList.toggle('open', open);
+    btn.firstChild.textContent = open ? 'Hide the photos ' : 'View the poster & team photo ';
+  }));
 
   // Stat numbers count up from 0 once revealed.
   function countUp(el) {
