@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carson Orejola</title>
+<meta name="description" content="Carson Orejola — Technical Support Engineer at Tanium. NC State Computer Science graduate.">
+<meta name="theme-color" content="#0D2B33">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Tokens: see docs/design-system.md */
+  :root {
+    --blue: #007190;
+    --blue-deep: #005E78;
+    --green: #00978D;
+    --sage: #96D1AA;
+    --lemon: #FFEFAE;
+    --ink: #0D2B33;
+    --ink-2: #12363F;
+    --paper: #FBF8EF;
+    --panel: #F3F0E4;
+    --surface: #FFFFFF;
+    --text: var(--ink);
+    --muted: #4A5F63;
+    --muted-dark: #9DB3B0;
+    --line: #E3E6DE;
+    --on-dark: #E8F0EC;
+    --action: var(--blue);
+    --action-hover: var(--blue-deep);
+    --action-text: var(--paper);
+    --eyebrow: var(--blue);
+    --chip-bg: rgba(150, 209, 170, .25);
+    --chip-text: var(--ink);
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+    --ease-std: cubic-bezier(.4, 0, .2, 1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0D2B33;
+      --panel: #12363F;
+      --surface: #12363F;
+      --text: #E8F0EC;
+      --muted: #9DB3B0;
+      --line: rgba(255, 255, 255, .08);
+      --action: var(--sage);
+      --action-hover: #B4E0C2;
+      --action-text: var(--ink);
+      --eyebrow: var(--sage);
+      --chip-bg: rgba(150, 209, 170, .15);
+      --chip-text: var(--sage);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--text);
+    font: 400 17px/1.65 Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--action); text-underline-offset: 3px; }
+  h1, h2, h3, .stat b, .mark { font-family: "Space Grotesk", Inter, sans-serif; }
+  h2 { font-size: clamp(32px, 4.5vw, 44px); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; margin: 0 0 40px; }
+  h3 { font-size: 20px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; margin: 0; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow { font: 600 13px/1.4 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--eyebrow); margin: 0 0 14px; }
+  .meta { color: var(--muted); font-size: 15px; font-weight: 500; margin: 4px 0 14px; }
+  section { padding: 96px 0; scroll-margin-top: 64px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--paper) 85%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+  .mark { font-size: 19px; font-weight: 700; letter-spacing: -.02em; color: var(--text); text-decoration: none; }
+  .mark span { color: var(--green); }
+  nav ul { display: flex; gap: 28px; list-style: none; margin: 0 0 0 auto; padding: 0; font-size: 15px; font-weight: 500; }
+  nav ul a { position: relative; color: var(--muted); text-decoration: none; }
+  nav ul a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-out); }
+  nav ul a:hover, nav ul a.active { color: var(--text); }
+  nav ul a:hover::after, nav ul a.active::after { transform: scaleX(1); }
+
+  /* Buttons */
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 24px; border-radius: 999px; border: 1px solid transparent;
+    font: 600 15px/1 Inter, sans-serif; text-decoration: none;
+    background: var(--action); color: var(--action-text);
+    transition: background-color .25s var(--ease-std), border-color .25s var(--ease-std), transform .25s var(--ease-std), box-shadow .25s var(--ease-std);
+  }
+  .btn:hover { background: var(--action-hover); transform: translateY(-2px); box-shadow: 0 10px 28px -12px var(--action); }
+  .btn.outline { background: transparent; color: var(--text); border-color: var(--line); }
+  .btn.outline:hover { border-color: var(--green); box-shadow: none; }
+  .btn.small { padding: 10px 18px; font-size: 14px; }
+  .btn .arrow { transition: transform .25s var(--ease-std); }
+  .btn:hover .arrow { transform: translateX(3px); }
+  .dark .btn:not(.outline) { background: var(--sage); color: var(--ink); }
+  .dark .btn:not(.outline):hover { background: #B4E0C2; box-shadow: 0 10px 28px -12px var(--sage); }
+  .dark .btn.outline { color: var(--on-dark); border-color: rgba(255, 255, 255, .16); }
+  .dark .btn.outline:hover { border-color: var(--sage); }
+
+  /* Dark blocks (hero, proof panel) */
+  .dark { background: var(--ink); color: var(--on-dark); --eyebrow: var(--sage); --muted: var(--muted-dark); }
+
+  /* Hero */
+  .hero { position: relative; overflow: hidden; padding: 128px 0 0; }
+  .glow { position: absolute; width: 640px; height: 640px; border-radius: 50%; filter: blur(90px); opacity: .35; pointer-events: none; animation: drift 20s ease-in-out infinite alternate; }
+  .glow.g1 { background: var(--green); top: -260px; left: -180px; }
+  .glow.g2 { background: var(--blue); bottom: -320px; right: -160px; animation-delay: -10s; }
+  @keyframes drift { to { transform: translate(20px, -20px); } }
+  .hero .wrap { position: relative; }
+  .hero h1 {
+    font-size: clamp(48px, 9vw, 80px); font-weight: 700; line-height: 1; letter-spacing: -.03em; margin: 0 0 28px;
+    background: linear-gradient(90deg, var(--sage), var(--lemon)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lede { font-size: clamp(18px, 2vw, 20px); line-height: 1.6; color: var(--muted-dark); max-width: 640px; margin: 0 0 40px; }
+
+  /* Stats strip */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 96px; padding: 40px 0 56px; border-top: 1px solid rgba(255, 255, 255, .08); }
+  .stat b { display: block; font-size: clamp(40px, 5vw, 56px); font-weight: 700; line-height: 1; letter-spacing: -.03em; color: var(--lemon); }
+  .stat span { display: block; margin-top: 10px; font-size: 14px; color: var(--muted-dark); }
+
+  /* Experience timeline */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+  .job { position: relative; display: grid; grid-template-columns: 170px 1fr; gap: 32px; padding-bottom: 48px; }
+  .job:last-child { padding-bottom: 0; }
+  .job::before { content: ""; position: absolute; left: -32px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px var(--paper); }
+  .job.plain::before { display: none; }
+  .when { color: var(--muted); font-size: 15px; font-weight: 500; padding-top: 1px; }
+  .points { margin: 0; padding-left: 20px; max-width: 640px; }
+  .points li { margin-bottom: 8px; }
+  .points li::marker { color: var(--green); }
+
+  /* Cards & chips */
+  .card {
+    position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 36px;
+    transition: transform .25s var(--ease-std), border-color .25s var(--ease-std), box-shadow .25s var(--ease-std);
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: 0 18px 40px -24px rgba(13, 43, 51, .45); }
+  .card p { max-width: 640px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 20px 0 0; padding: 0; }
+  .chips li { background: var(--chip-bg); color: var(--chip-text); font-size: 13px; font-weight: 500; padding: 5px 13px; border-radius: 999px; transition: transform .25s var(--ease-std); }
+  .chips li:hover { transform: translateY(-1px); }
+
+  /* Certifications proof panel */
+  .proof { border-radius: 24px; padding: 64px; background-image: radial-gradient(120% 80% at 50% 0%, rgba(150, 209, 170, .10), transparent); background-color: var(--ink); }
+  .certs { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .cert {
+    background: var(--ink-2); border: 1px solid rgba(255, 255, 255, .08); border-radius: 16px; padding: 24px;
+    background-image: radial-gradient(120% 80% at 50% 0%, rgba(150, 209, 170, .10), transparent);
+    transition: transform .25s var(--ease-std), border-color .25s var(--ease-std);
+  }
+  .cert:hover { transform: translateY(-4px); border-color: var(--sage); }
+  .cert h3 { font-size: 17px; color: var(--on-dark); }
+  .cert .meta { margin: 8px 0 0; font-size: 14px; }
+  .cert .meta b { color: var(--sage); font-weight: 600; }
+
+  /* Worked-with marquee */
+  .marquee { overflow: hidden; padding: 8px 0 64px; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+  .marquee .track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+  .marquee:hover .track { animation-play-state: paused; }
+  .marquee span { font: 600 clamp(28px, 4vw, 40px) "Space Grotesk", sans-serif; letter-spacing: -.02em; color: var(--muted); opacity: .55; padding: 0 28px; white-space: nowrap; }
+  .marquee span::after { content: "·"; padding-left: 56px; color: var(--green); }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* Contact */
+  .closing { background: var(--panel); border-radius: 24px; padding: 88px 32px; text-align: center; }
+  .closing h2 { font-size: clamp(36px, 6vw, 56px); letter-spacing: -.03em; max-width: 760px; margin: 0 auto 20px; }
+  .closing p { color: var(--muted); max-width: 520px; margin: 0 auto 36px; }
+  .closing .actions { justify-content: center; }
+  footer { padding: 40px 0 48px; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 760px) {
+    section { padding: 64px 0; }
+    nav ul { display: none; }
+    .hero { padding-top: 88px; }
+    .stats { grid-template-columns: repeat(2, 1fr); row-gap: 36px; margin-top: 64px; }
+    .job { grid-template-columns: 1fr; gap: 4px; }
+    .card { padding: 28px 24px; }
+    .proof { padding: 40px 20px; border-radius: 20px; }
+    .closing { padding: 64px 20px; }
+  }
+  @media (max-width: 400px) { .wrap { padding: 0 16px; } }
+
+  /* Load + scroll reveals */
+  @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+  nav { animation: rise .7s var(--ease-out) both; }
+  .hero-copy > * { animation: rise .8s var(--ease-out) both; }
+  .hero-copy > :nth-child(2) { animation-delay: .1s; }
+  .hero-copy > :nth-child(3) { animation-delay: .2s; }
+  .hero-copy > :nth-child(4) { animation-delay: .3s; }
+  /* Only hidden once JS has marked the page, so content never stays invisible */
+  .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); transition-delay: var(--d, 0s); }
+  .js .reveal.scale { transform: translateY(28px) scale(.97); }
+  .js .reveal.in { opacity: 1; transform: none; }
+  /* Hover transitions must not wait for the reveal stagger */
+  .js .reveal.in.card, .js .reveal.in.cert { transition-delay: 0s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js .reveal { opacity: 1; transform: none; }
+  }
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="mark" href="#">Carson Orejola<span>.</span></a>
+    <ul>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn small" href="#contact">Get in touch</a>
+  </div>
+</nav>
+
+<main>
+  <header class="hero dark">
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Technical Support Engineer · Durham, NC</p>
+        <h1>Carson Orejola</h1>
+        <p class="lede">A young professional in tech who loves solving hard problems for customers. Computer Science graduate from NC State, now supporting some of Tanium's largest customers, and looking for new, challenging roles in tech.</p>
+        <div class="actions">
+          <a class="btn" href="mailto:carsoreo@gmail.com">Get in touch <span class="arrow">→</span></a>
+          <a class="btn outline" href="https://www.linkedin.com/in/carson-orejola" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b data-count="93" data-suffix="%+">93%+</b><span>Customer satisfaction</span></div>
+        <div class="stat"><b data-count="5">5</b><span>Certifications</span></div>
+        <div class="stat"><b data-count="2" data-suffix="+ yrs">2+ yrs</b><span>At Tanium</span></div>
+        <div class="stat"><b data-count="3">3</b><span>Roles in tech</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="experience">
+    <div class="wrap">
+      <p class="eyebrow">Experience</p>
+      <h2>Where I've worked</h2>
+      <div class="timeline">
+        <div class="job">
+          <div class="when">Jul 2024 – Present</div>
+          <div>
+            <h3>Technical Support Engineer</h3>
+            <p class="meta">Tanium · Durham, NC · Full-time</p>
+            <ul class="points">
+              <li>Resolve a high volume of support tickets for some of Tanium's largest customers, including Fortune 100 enterprises and U.S. government organizations.</li>
+              <li>Maintain a 93%+ customer satisfaction (CSAT) score.</li>
+              <li>Support the full Tanium platform across all of its modules, from deployment and configuration to troubleshooting.</li>
+              <li>Tanium Certified Administrator and Certified Specialist in Cloud Deployment.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Jun – Aug 2023</div>
+          <div>
+            <h3>Technical Account Manager Intern</h3>
+            <p class="meta">Tanium · Morrisville, NC</p>
+            <ul class="points">
+              <li>Developed a script that disables input devices on managed endpoints using Tanium and PowerShell.</li>
+              <li>Supported customer calls alongside a mentor, building customer relationship skills.</li>
+              <li>Earned the Tanium Certified Operator certification.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Jul – Dec 2022</div>
+          <div>
+            <h3>Co-op Technical Consulting Engineer</h3>
+            <p class="meta">Cisco · North Carolina</p>
+            <ul class="points">
+              <li>Worked with customers and a team to support Cisco products and services.</li>
+              <li>Earned the CCNA certification while building hands-on networking skills.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <p class="eyebrow">Projects</p>
+      <h2>Things I've built</h2>
+      <div class="card">
+        <p class="eyebrow">NC State Senior Design · Sponsored by SAS</p>
+        <h3>Data Steward Web App</h3>
+        <p class="meta">5-person team</p>
+        <p>A full-stack web application built for SAS's Data Management Unit, helping data stewards manage their data more efficiently, from first idea to finished product.</p>
+        <ul class="chips">
+          <li>React</li><li>Python</li><li>MySQL</li><li>Docker</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap">
+      <div class="proof dark">
+        <p class="eyebrow">Verified</p>
+        <h2>Certifications</h2>
+        <div class="certs">
+          <div class="cert"><h3>Tanium Certified Specialist – Cloud Deployment</h3><p class="meta"><b>Tanium</b> · 2025</p></div>
+          <div class="cert"><h3>Tanium Certified Administrator</h3><p class="meta"><b>Tanium</b> · 2024</p></div>
+          <div class="cert"><h3>Tanium Certified Operator</h3><p class="meta"><b>Tanium</b> · 2023</p></div>
+          <div class="cert"><h3>Cisco Certified Network Associate (CCNA)</h3><p class="meta"><b>Cisco</b> · 2022</p></div>
+          <div class="cert"><h3>Business Writing Principles</h3><p class="meta"><b>LinkedIn</b> · 2024</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-label="Organizations I've worked with: Tanium, Cisco, NC State">
+    <div class="track" aria-hidden="true">
+      <span>Tanium</span><span>Cisco</span><span>NC State</span>
+      <span>Tanium</span><span>Cisco</span><span>NC State</span>
+      <span>Tanium</span><span>Cisco</span><span>NC State</span>
+      <span>Tanium</span><span>Cisco</span><span>NC State</span>
+    </div>
+  </div>
+
+  <section id="education" style="padding-top: 32px">
+    <div class="wrap">
+      <p class="eyebrow">Education &amp; Skills</p>
+      <h2>Foundations</h2>
+      <div class="job plain">
+        <div class="when">2020 – 2024</div>
+        <div>
+          <h3>B.S. Computer Science</h3>
+          <p class="meta">North Carolina State University · Raleigh, NC</p>
+          <ul class="chips">
+            <li>Java</li><li>C</li><li>PowerShell</li><li>Object-Oriented Programming</li><li>Computer Networks</li><li>Operating Systems</li><li>Software Engineering</li><li>Data Analytics</li><li>Photoshop</li><li>Microsoft Office</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="closing">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's build something reliable.</h2>
+        <p>I'm open to new, challenging roles in tech. The best way to reach me is by email.</p>
+        <div class="actions">
+          <a class="btn" href="mailto:carsoreo@gmail.com">carsoreo@gmail.com <span class="arrow">→</span></a>
+          <a class="btn outline" href="https://www.linkedin.com/in/carson-orejola" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Carson Orejola</div>
+</footer>
+
+<script>
+  const calm = matchMedia('(prefers-reduced-motion: reduce)');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll reveals; cards and cert tiles also scale in, grid siblings stagger.
+  const items = document.querySelectorAll('section .eyebrow:first-child, section h2, .job, .card, .cert, .stat, .closing');
+  items.forEach(el => {
+    if (el.closest('.card, .closing') && el !== el.closest('.card, .closing')) return;
+    el.classList.add('reveal');
+    if (el.matches('.card, .cert')) el.classList.add('scale');
+    const sibs = [...el.parentElement.children].filter(c => c.matches('.job, .cert, .stat'));
+    if (sibs.length > 1) el.style.setProperty('--d', sibs.indexOf(el) * 0.08 + 's');
+  });
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    io.unobserve(e.target);
+    const n = e.target.querySelector('[data-count]');
+    if (n) countUp(n);
+  }), { rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Stat numbers count up from 0 once revealed.
+  function countUp(el) {
+    if (calm.matches) return;
+    const to = +el.dataset.count, suffix = el.dataset.suffix || '', t0 = performance.now();
+    const step = now => {
+      const p = Math.min(1, (now - t0) / 1200);
+      el.textContent = Math.round(to * (1 - (1 - p) ** 3)) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  // Glide to in-page links with an ease-in-out curve instead of jumping.
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+  let glide;
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const target = a.hash ? document.querySelector(a.hash) : document.body;
+    if (!target) return;
+    e.preventDefault();
+    const start = scrollY;
+    const end = Math.min(target === document.body ? 0 : target.getBoundingClientRect().top + scrollY - 64,
+                         document.documentElement.scrollHeight - innerHeight);
+    const dur = calm.matches ? 0 : Math.min(1400, 600 + Math.abs(end - start) * 0.3);
+    const t0 = performance.now();
+    cancelAnimationFrame(glide);
+    const step = now => {
+      const p = dur ? Math.min(1, (now - t0) / dur) : 1;
+      scrollTo(0, start + (end - start) * ease(p));
+      if (p < 1) glide = requestAnimationFrame(step);
+    };
+    glide = requestAnimationFrame(step);
+    history.replaceState(null, '', a.hash || location.pathname);
+  });
+  // Let the user take over mid-glide by scrolling.
+  addEventListener('wheel', () => cancelAnimationFrame(glide), { passive: true });
+  addEventListener('touchstart', () => cancelAnimationFrame(glide), { passive: true });
+
+  // Highlight the nav link for the section on screen.
+  const links = document.querySelectorAll('nav ul a');
+  const spy = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.hash === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
+</script>
+</body>
+</html>
