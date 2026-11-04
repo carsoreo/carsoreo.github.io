@@ -92,7 +92,7 @@ Supporting tints, derived from the above:
 |---|---------|------------|---------------|---------|
 | 1 | **Nav** | Paper, 85% opacity, blurred, sticky | Tanium | Wordmark on the left. Links: Experience · Projects · Certifications · Contact. A small "Get in touch" pill on the right. |
 | 2 | **Hero** | **Ink + glow** | Cisco hero, Tanium headline | Eyebrow "TECHNICAL SUPPORT ENGINEER · DURHAM, NC", then the name, a lede, a solid pill and an outline pill. |
-| 3 | **Stats strip** | Ink, continuing the hero | Cisco "global scale" | **93%+** CSAT · **5** certifications · **2+ yrs** at Tanium · **3** roles in tech. Stat numbers in Lemon. |
+| 3 | **Stats strip** | Ink, continuing the hero | Cisco "global scale" | **97%+** CSAT · **5** certifications · **2+ yrs** at Tanium · **3** roles in tech. Stat numbers in Lemon. |
 | 4 | **Experience** | Paper | Tanium feature rows | Each role has a date column, title, company and bullets. A small Benzol Green dot marks a timeline line. |
 | 5 | **Project** | Paper | Tanium split block | One wide card for the SAS app, with tech chips in Sage. |
 | 6 | **Certifications** | **Ink proof panel**, 24px radius, card light | Tanium "Named a Leader" card | Eyebrow "VERIFIED", the H2, then a 2×2 grid of cert tiles. |

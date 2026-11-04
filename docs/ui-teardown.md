@@ -132,7 +132,7 @@ Inspiration for Carson Orejola's resume site. Captured 2026-10-19 from the live 
 | Dark, glowing hero | Cisco | A dark hero section with a soft radial glow behind the name. |
 | Navy proof card | Tanium | Certifications shown inside one dark rounded card. |
 | Logo marquee | Tanium | A slow strip of "worked with" names: Tanium · Cisco · SAS · NC State. |
-| Big stat numbers | Cisco | Stats row: **93%+** CSAT · **5** certifications · **4** roles/projects. |
+| Big stat numbers | Cisco | Stats row: **97%+** CSAT · **5** certifications · **4** roles/projects. |
 | Pill buttons, solid + outline | Both | Primary "Get in touch" plus outline "LinkedIn". |
 | Fade-up reveal at 0.6–0.8s | Cisco | Already in place. Keep the timings in this range. |
 | Snappy hovers at 150–300ms, `cubic-bezier(.4,0,.2,1)` | Tanium | Buttons and cards. |
