@@ -356,7 +356,7 @@
       <ul class="interests">
         <li><h3>Coffee</h3><p>I&rsquo;ve reviewed nearly every cafe in the Triangle, and I develop my own drinks in my home cafe.</p></li>
         <li><h3>Photography</h3><p>Wildlife, landscapes and street photos, especially birds. <a href="https://carsoreo.github.io/photography/">See the gallery</a> or follow <a href="https://www.instagram.com/car_sore/" target="_blank" rel="noopener">@car_sore</a>.</p></li>
-        <li><h3>Football</h3><p>A big fan of the game, and of the analytical side of fantasy football. I&rsquo;m <a href="https://github.com/carsoreo/ff-discord-bot" target="_blank" rel="noopener">building a Discord bot</a> for my league.</p></li>
+        <li><h3>Football</h3><p>A big fan of the game, and of the analytical side of fantasy football. I&rsquo;m <a href="https://github.com/carsoreo/move-the-chains" target="_blank" rel="noopener">building a Discord bot</a> for my league.</p></li>
         <li><h3>Staying active</h3><p>The gym is part of my routine, and lately I&rsquo;ve been getting into running.</p></li>
         <li><h3>Music</h3><p>A lifelong passion. I&rsquo;m currently teaching myself guitar.</p></li>
         <li><h3>Cooking</h3><p>I love to cook, and I&rsquo;m always looking for the next recipe to try.</p></li>
@@ -469,7 +469,7 @@
         <p class="meta">Everything I'm building, pulled live from GitHub · <span id="gh-updated">live</span></p>
         <!-- Filled in from the GitHub API on page load; this static list is the fallback. -->
         <ul class="repos" id="gh-repos">
-          <li><a href="https://github.com/carsoreo/ff-discord-bot" target="_blank" rel="noopener">ff-discord-bot</a><span class="wip">In progress</span><p>Discord bot for my fantasy football league</p></li>
+          <li><a href="https://github.com/carsoreo/move-the-chains" target="_blank" rel="noopener">move-the-chains</a><span class="wip">In progress</span><p>Discord bot for my fantasy football league</p></li>
           <li><a href="https://github.com/carsoreo/photography" target="_blank" rel="noopener">photography</a><p>Wildlife, landscape and street photography by Carson Orejola (@car_sore)</p></li>
           <li><a href="https://github.com/carsoreo/carsoreo.github.io" target="_blank" rel="noopener">carsoreo.github.io</a><p>My personal website</p></li>
         </ul>
@@ -561,7 +561,7 @@
 
   // Live GitHub repos: newest activity first, with each repo's latest commit.
   // shortcut: unauthenticated API allows 60 requests/hour per visitor; on failure the static list stays.
-  const IN_PROGRESS = ['ff-discord-bot'];
+  const IN_PROGRESS = ['move-the-chains'];
   const ago = d => {
     const s = (Date.now() - new Date(d)) / 1000;
     for (const [n, u] of [[31536000, 'year'], [2592000, 'month'], [86400, 'day'], [3600, 'hour'], [60, 'minute']])
