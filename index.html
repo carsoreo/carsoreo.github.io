@@ -129,10 +129,14 @@
 
   /* Hero */
   .hero { position: relative; overflow: hidden; padding: 128px 0 0; }
-  .glow { position: absolute; width: 640px; height: 640px; border-radius: 50%; filter: blur(90px); opacity: .35; pointer-events: none; animation: drift 20s ease-in-out infinite alternate; }
-  .glow.g1 { background: var(--green); top: -260px; left: -180px; }
-  .glow.g2 { background: var(--blue); bottom: -320px; right: -160px; animation-delay: -10s; }
-  @keyframes drift { to { transform: translate(20px, -20px); } }
+  /* Each glow circles a point off its own centre (transform-origin) and swells on a separate clock, so the
+     light keeps moving and never repeats exactly. Only rotate and scale change, which the compositor handles. */
+  .glow { position: absolute; width: 640px; height: 640px; border-radius: 50%; filter: blur(90px); opacity: .35; pointer-events: none; animation: orbit 34s linear infinite, breathe 11s ease-in-out infinite alternate; }
+  .glow.g1 { background: var(--green); top: -260px; left: -180px; transform-origin: 78% 70%; }
+  .glow.g2 { background: var(--blue); bottom: -320px; right: -160px; transform-origin: 22% 28%; animation-duration: 46s, 15s; animation-direction: reverse, alternate; }
+  .glow.g3 { width: 420px; height: 420px; background: var(--sage); opacity: .16; top: 30%; left: 48%; transform-origin: 110% 40%; animation-duration: 58s, 9s; }
+  @keyframes orbit { to { rotate: 360deg; } }
+  @keyframes breathe { to { scale: 1.18; } }
   .hero .wrap { position: relative; }
   .hero h1 {
     font-size: clamp(48px, 9vw, 80px); font-weight: 700; line-height: 1; letter-spacing: -.03em; margin: 0 0 28px;
@@ -367,6 +371,7 @@
   <header class="hero dark">
     <div class="glow g1"></div>
     <div class="glow g2"></div>
+    <div class="glow g3"></div>
     <div class="wrap">
       <div class="hero-top">
       <div class="hero-copy">

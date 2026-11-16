@@ -49,7 +49,7 @@ Supporting tints, derived from the above:
 
 ### Signature effects
 
-- **Hero glow:** two blurred radial gradients on Ink, Benzol Green at the top left and Antwarp Blue at the bottom right, around 35% opacity. It's the "natural light through water" version of Cisco's glowing ribbons.
+- **Hero glow:** three blurred discs on Ink: Benzol Green from the top left and Antwarp Blue from the bottom right at around 35% opacity, plus a smaller Sage one at 16% behind the terminal. They move all the time (see Motion). It's the "natural light through water" version of Cisco's glowing ribbons.
 - **Card light:** `radial-gradient(120% 80% at 50% 0%, rgba(150,209,170,.10), transparent)` on dark cards, lit from the top like Cisco.
 - **Gradient text (one place only):** the hero name can use `linear-gradient(90deg, #96D1AA, #FFEFAE)` on Ink.
 
@@ -143,7 +143,7 @@ All motion respects `prefers-reduced-motion: reduce`. With it on, there are no a
 | **Page load** | Nav, then each hero line rises 24px and fades in, staggered 100ms. |
 | **Scroll reveal** | Elements rise 28px and fade in over 800ms with `--ease-out`. Siblings in a grid stagger 80ms. They trigger when 10% inside the viewport. |
 | **Scale reveal** | Cert tiles and the project card also scale from 0.97 to 1, as on Cisco. |
-| **Hero glow** | The two glow blobs drift slowly, 20s alternate, translating ±20px. Barely noticeable. |
+| **Hero glow** | Always moving. Each glow circles a point about 220px off its own centre (34s, 46s and 58s per lap, the blue one the other way) and swells to 1.18× on a separate 9–15s clock, so the pattern never repeats exactly. Off with reduced motion. |
 | **Marquee** | "Worked with" strip, 40s linear infinite. It pauses on hover. |
 | **Stat count-up** | Numbers count from 0 when revealed, over 1.2s with `--ease-out`. |
 | **Terminal typing** | Answers type themselves out over 250–700ms, scaled to their length. A new command finishes the previous answer at once. It stays on with reduced motion, like the fades: the text appears in place and nothing travels. |
