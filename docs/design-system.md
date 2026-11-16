@@ -91,7 +91,7 @@ Supporting tints, derived from the above:
 | # | Section | Background | Borrowed from | Content |
 |---|---------|------------|---------------|---------|
 | 1 | **Nav** | Paper, 85% opacity, blurred, sticky | Tanium | Wordmark on the left. Links: Experience · Projects · Certifications · Contact. A small "Get in touch" pill on the right. |
-| 2 | **Hero** | **Ink + glow** | Cisco hero, Tanium headline | Eyebrow "TECHNICAL SUPPORT ENGINEER · DURHAM, NC", then the name, a lede, a solid pill and an outline pill. |
+| 2 | **Hero** | **Ink + glow** | Cisco hero, Tanium headline | Eyebrow "TECHNICAL SUPPORT ENGINEER · DURHAM, NC", then the name, a lede, a solid pill and an outline pill. Beside them, a working terminal that answers from the page's own content. |
 | 3 | **Stats strip** | Ink, continuing the hero | Cisco "global scale" | **97%+** CSAT · **5** certifications · **2+ yrs** at Tanium · **3** roles in tech. Stat numbers in Lemon. |
 | 4 | **Experience** | Paper | Tanium feature rows | Each role has a date column, title, company and bullets. A small Benzol Green dot marks a timeline line. |
 | 5 | **Project** | Paper | Tanium split block | One wide card for the SAS app, with tech chips in Sage. |
@@ -117,9 +117,13 @@ Skipped on purpose: mega-menus, tabs, carousels and cookie banners. They're too 
 
 **Chips:** pill with Sage at 25% opacity behind, Ink text, 13px/500. On dark: Sage at 15% with Sage text.
 
-**Cards:** 16px radius, 1px border, Paper or white surface. Hover lifts 4px, the border turns Benzol Green and the shadow appears.
+**Cards:** 16px radius, 1px border, Paper or white surface. Hover lifts 4px, the border turns Benzol Green and the shadow appears. Cert tiles don't lift: they aren't links, and a lift would promise a click.
 
 **Stat:** a Bricolage Grotesque 700 number above an Inter 14px muted label.
+
+**Terminal** (hero, right column; under the copy below 900px): `--ink-2` surface with the card light, 16px radius, system monospace at 14px. The prompt `$` and links are Sage, typed commands are `--on-dark`, output is Muted-dark and errors are Lemon. The border turns Sage while the prompt has focus. Monospace is used here and nowhere else, because this is the only place that takes commands.
+
+**Browser surfaces:** text selection is Ink on Sage. The focus ring is 2px `--ring` (Antwarp Blue on Paper, Sage on Ink), offset 3px.
 
 ---
 

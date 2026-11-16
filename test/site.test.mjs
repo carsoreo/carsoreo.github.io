@@ -52,6 +52,12 @@ test('the share-card image exists at the size the meta tags give', () => {
   assert.deepEqual(jpegSize(path), { w: Number(meta('og:image:width')), h: Number(meta('og:image:height')) });
 });
 
+test('every terminal shortcut button runs a command that exists', () => {
+  const shortcuts = all(/data-cmd="(\w+)/g);
+  assert.ok(shortcuts.length > 0);
+  for (const cmd of shortcuts) assert.match(html, new RegExp(`\\n    ${cmd}: `), `no "${cmd}" command`);
+});
+
 test('the page declares its language and has a title', () => {
   assert.match(html, /<html lang="en">/);
   assert.match(html, /<title>[^<]+<\/title>/);
