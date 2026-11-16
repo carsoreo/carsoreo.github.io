@@ -679,14 +679,60 @@
       : oops('You are not in the sudoers file. One command is allowed anyway: sudo hire carson'),
     clear: () => (out.replaceChildren(), []),
   };
-  function run(line) {
+  // Types lines out character by character. The lines are already in the page; only their text nodes are emptied
+  // and refilled, so links keep working. aria-busy holds a screen reader back until the whole answer is there.
+  // It runs under reduced motion too, like the fades: the text appears in place and nothing travels.
+  let finishTyping = () => {};
+  function type(lines, delay = 0) {
+    const parts = [];
+    for (const p of lines) {
+      p.hidden = true;
+      const walk = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+      while (walk.nextNode()) { parts.push({ p, node: walk.currentNode, text: walk.currentNode.data }); walk.currentNode.data = ''; }
+    }
+    const total = parts.reduce((n, part) => n + part.text.length, 0), dur = Math.min(700, Math.max(250, total * 12));
+    let i = 0, shown = 0, t0, frame;
+    const done = () => {
+      cancelAnimationFrame(frame);
+      for (const part of parts) part.node.data = part.text;
+      for (const p of lines) p.hidden = false;
+      out.removeAttribute('aria-busy');
+      out.scrollTop = out.scrollHeight;
+      finishTyping = () => {};
+    };
+    const tick = now => {
+      t0 ??= now + delay;
+      let budget = Math.ceil(Math.min(1, Math.max(0, now - t0) / dur) * total) - shown;
+      shown += budget;
+      while (budget > 0 && i < parts.length) {
+        const part = parts[i], had = part.node.data.length;
+        part.p.hidden = false;
+        part.node.data = part.text.slice(0, had + budget);
+        budget -= part.node.data.length - had;
+        if (part.node.data.length === part.text.length) i++;
+      }
+      out.scrollTop = out.scrollHeight;
+      shown < total ? frame = requestAnimationFrame(tick) : done();
+    };
+    out.setAttribute('aria-busy', 'true');
+    finishTyping = done;
+    frame = requestAnimationFrame(tick);
+  }
+  type([...out.children], 500); // the opening lines, once the terminal has faded in
+
+  // `typed` is false for a shortcut button: nobody typed that command, so its echo types out too.
+  function run(line, typed = true) {
     const [name, ...args] = line.trim().split(/\s+/);
     if (!name) return;
+    finishTyping();
     const fn = Object.hasOwn(COMMANDS, name.toLowerCase()) && COMMANDS[name.toLowerCase()];
     const result = fn ? fn(args.join(' ').toLowerCase()) : oops(`command not found: ${name}. Type help to see what works.`);
     // Typed text is only ever appended as a text node, never parsed as HTML.
-    if (fn !== COMMANDS.clear) out.append(el('p', { className: 'cmd', textContent: line.trim() }), ...[result].flat().map(r => { const p = el('p'); p.append(r); return p; }));
+    if (fn === COMMANDS.clear) return;
+    const lines = [el('p', { className: 'cmd', textContent: line.trim() }), ...[result].flat().map(r => { const p = el('p'); p.append(r); return p; })];
+    out.append(...lines);
     out.scrollTop = out.scrollHeight;
+    type(typed ? lines.slice(1) : lines);
   }
   const past = []; let at = 0;
   document.getElementById('term-form').addEventListener('submit', e => {
@@ -707,7 +753,7 @@
   });
   document.getElementById('term').addEventListener('click', e => {
     const chip = e.target.closest('[data-cmd]');
-    if (chip) run(chip.dataset.cmd);
+    if (chip) run(chip.dataset.cmd, false);
     // A click anywhere else lands in the prompt, unless the visitor is selecting text or following a link.
     else if (!e.target.closest('a') && !String(getSelection())) cmdIn.focus({ preventScroll: true });
   });

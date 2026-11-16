@@ -146,6 +146,7 @@ All motion respects `prefers-reduced-motion: reduce`. With it on, there are no a
 | **Hero glow** | The two glow blobs drift slowly, 20s alternate, translating ±20px. Barely noticeable. |
 | **Marquee** | "Worked with" strip, 40s linear infinite. It pauses on hover. |
 | **Stat count-up** | Numbers count from 0 when revealed, over 1.2s with `--ease-out`. |
+| **Terminal typing** | Answers type themselves out over 250–700ms, scaled to their length. A new command finishes the previous answer at once. It stays on with reduced motion, like the fades: the text appears in place and nothing travels. |
 | **Hover** | Buttons lift 2px, cards lift 4px, arrows slide 3px. All 250ms with `--ease-std`. |
 | **Nav underline** | Grows from the left in 350ms. The current section's link stays underlined (scroll-spy). |
 | **In-page links** | Glide with an ease-in-out cubic over 600–1400ms depending on distance, offset 72px for the sticky nav. Scrolling by the user cancels the glide. |

@@ -15,7 +15,7 @@ My resume site: a single static page with no framework and no build step.
 - **Contrast rules.** Each text and background pair has a measured WCAG contrast ratio and a rule for where it may be used. Benzol Green, for example, is only for large text and icons.
 - **Light and dark themes** follow `prefers-color-scheme` by swapping semantic tokens, not individual colors.
 - **Layout and motion** are based on measurements of enterprise sites (Tanium, Cisco) at a fixed viewport. The computed styles are recorded in [`docs/ui-teardown.md`](docs/ui-teardown.md).
-- **A working terminal in the hero.** It takes typed commands (`help`, `certs`, `open projects`), with Tab completion and ↑ history. Each command reads its answer from the page's own markup, so the terminal and the page can't disagree.
+- **A working terminal in the hero.** It takes typed commands (`help`, `certs`, `open projects`), with Tab completion and ↑ history, and types its answers out. Each command reads its answer from the page's own markup, so the terminal and the page can't disagree.
 - **GitHub section.** The page asks the GitHub API for my most recently updated repositories when it loads.
 
 ## Structure
