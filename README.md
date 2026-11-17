@@ -22,6 +22,7 @@ My resume site: a single static page with no framework and no build step.
 
 ```
 index.html              the whole site: markup, styles and scripts
+Carson-Orejola-Resume.pdf  the resume the hero button opens; replace it to update
 images/                 DataMatch poster and team photo, and the link-preview image (og.jpg)
 docs/design-system.md   tokens, contrast rules, type scale, motion
 docs/ui-teardown.md     layout and motion research the design is based on

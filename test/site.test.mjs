@@ -58,6 +58,12 @@ test('every terminal shortcut button runs a command that exists', () => {
   for (const cmd of shortcuts) assert.match(html, new RegExp(`\\n    ${cmd}: `), `no "${cmd}" command`);
 });
 
+test('the search data parses and names only profiles the page links to', () => {
+  const person = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]+?)<\/script>/)[1]);
+  assert.equal(person['@type'], 'Person');
+  for (const url of person.sameAs) assert.ok(html.includes(`href="${url}"`), `${url} is not linked on the page`);
+});
+
 test('the page declares its language and has a title', () => {
   assert.match(html, /<html lang="en">/);
   assert.match(html, /<title>[^<]+<\/title>/);
